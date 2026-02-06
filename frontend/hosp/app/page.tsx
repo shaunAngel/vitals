@@ -10,6 +10,9 @@ const Dashboard = () => {
     hr: 82, resp: 16, temp: 36.6, spo2: 98, sysBP: 120, diaBP: 80, bmi: 22.5, map: 93,
     riskScore: 0, status: "Stable"
   });
+  const [trendData, setTrendData] = useState([
+    {time:'1',score:85},{time:'2',score:88},{time:'3',score:92},{time:'4',score:90}
+  ]);
 
   const updatePrediction = async () => {
     try {
@@ -27,7 +30,14 @@ const Dashboard = () => {
 
       const result = await response.json();
       if (response.ok) {
-        setVitals(prev => ({ ...prev, riskScore: result.riskScore, status: result.status }));
+        const newRiskScore = result.riskScore;
+        setVitals(prev => ({ ...prev, riskScore: newRiskScore, status: result.status }));
+        
+        // Add to trend data - keep last 10 points
+        setTrendData(prev => {
+          const updated = [...prev, { time: String(prev.length + 1), score: 100 - newRiskScore }];
+          return updated.slice(-10);
+        });
       }
     } catch (err) {
       console.warn("AI Backend is offline.");
@@ -73,7 +83,7 @@ const Dashboard = () => {
           <h2 className="font-bold text-slate-800 mb-6">Neural Recovery Trend</h2>
           <div className="h-48">
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={mockTrendData}><CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" /><XAxis dataKey="time" hide /><Tooltip /><Area type="monotone" dataKey="score" stroke="#2563eb" strokeWidth={2} fill="#dbeafe" /></AreaChart>
+              <AreaChart data={trendData}><CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" /><XAxis dataKey="time" hide /><Tooltip /><Area type="monotone" dataKey="score" stroke="#2563eb" strokeWidth={2} fill="#dbeafe" /></AreaChart>
             </ResponsiveContainer>
           </div>
         </div>
