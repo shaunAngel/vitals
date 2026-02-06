@@ -34,8 +34,8 @@ const Dashboard = () => {
     }
   };
 
-  // Keep AI in sync with sliders
-  useEffect(() => { updatePrediction(); }, [vitals.hr, vitals.temp, vitals.spo2]);
+  // Keep AI in sync with sliders - updated whenever any vital changes
+  useEffect(() => { updatePrediction(); }, [vitals.hr, vitals.resp, vitals.temp, vitals.spo2, vitals.sysBP, vitals.diaBP, vitals.bmi, vitals.map]);
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] p-4 md:p-8 font-sans text-slate-900">
@@ -56,10 +56,16 @@ const Dashboard = () => {
           <h2 className="font-bold mb-4 flex items-center gap-2"><Activity size={18}/> Demo Controller</h2>
           <label className="text-xs font-bold text-slate-400 block mb-2 uppercase tracking-tighter">Heart Rate ({vitals.hr} bpm)</label>
           <input type="range" min="60" max="140" value={vitals.hr} onChange={(e) => setVitals({...vitals, hr: parseInt(e.target.value)})} className="w-full h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer mb-6" />
+          <label className="text-xs font-bold text-slate-400 block mb-2 uppercase tracking-tighter">Respiratory ({vitals.resp} rpm)</label>
+          <input type="range" min="12" max="30" value={vitals.resp} onChange={(e) => setVitals({...vitals, resp: parseInt(e.target.value)})} className="w-full h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer mb-6" />
           <label className="text-xs font-bold text-slate-400 block mb-2 uppercase tracking-tighter">Temp ({vitals.temp}°C)</label>
           <input type="range" min="36" max="40" step="0.1" value={vitals.temp} onChange={(e) => setVitals({...vitals, temp: parseFloat(e.target.value)})} className="w-full h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer mb-6" />
           <label className="text-xs font-bold text-slate-400 block mb-2 uppercase tracking-tighter">Oxygen ({vitals.spo2}%)</label>
           <input type="range" min="85" max="100" value={vitals.spo2} onChange={(e) => setVitals({...vitals, spo2: parseInt(e.target.value)})} className="w-full h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer mb-6" />
+          <label className="text-xs font-bold text-slate-400 block mb-2 uppercase tracking-tighter">Sys BP ({vitals.sysBP} mmHg)</label>
+          <input type="range" min="90" max="180" value={vitals.sysBP} onChange={(e) => setVitals({...vitals, sysBP: parseInt(e.target.value)})} className="w-full h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer mb-6" />
+          <label className="text-xs font-bold text-slate-400 block mb-2 uppercase tracking-tighter">Dia BP ({vitals.diaBP} mmHg)</label>
+          <input type="range" min="60" max="110" value={vitals.diaBP} onChange={(e) => setVitals({...vitals, diaBP: parseInt(e.target.value)})} className="w-full h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer mb-6" />
         </div>
 
         {/* Center: Trend */}
