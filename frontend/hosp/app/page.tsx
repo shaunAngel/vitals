@@ -12,7 +12,7 @@ interface RiskFactor {
 
 const COLORS = ['#ef4444', '#f97316', '#eab308', '#22c55e'];
 
-const getNormalRanges = () => ({
+const getNormalRanges = (): { [key: string]: { normal: [number, number]; danger: [number, number] } } => ({
   hr: { normal: [60, 100], danger: [40, 140] },
   resp: { normal: [12, 20], danger: [8, 30] },
   temp: { normal: [36.5, 37.5], danger: [35, 39.5] },
