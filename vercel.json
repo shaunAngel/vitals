@@ -1,0 +1,5 @@
+{
+  "buildCommand": "cd frontend/hosp && npm run build",
+  "outputDirectory": "frontend/hosp/.next",
+  "root": "frontend/hosp"
+}
