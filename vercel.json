@@ -1,4 +1,0 @@
-{
-  "buildCommand": "cd frontend/hosp && npm install && npm run build",
-  "outputDirectory": "frontend/hosp/.next"
-}
