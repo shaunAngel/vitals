@@ -1,2 +1,6 @@
 RecoveryAssistant v1.0: AI-Driven Post-Op Monitoring
 RecoveryAssistant is a proactive monitoring engine that utilizes a Random Forest Classifier to analyze real-time patient vital signs. By shifting from reactive binary alarms to a probabilistic risk assessment, it identifies complex patterns of clinical deterioration—such as rising heart rate paired with falling oxygen—to significantly reduce alert fatigue. The solution features a Next.js dashboard and a Flask backend, providing clinicians with high-level clarity through a 94% accurate model probability score and automated risk-factor highlighting.
+
+
+
+Vital signs are critical indicators of the body's core functions, used to measure physical health and detect medical problems. The four main vital signs are body temperature, pulse rate (heartbeat), respiration rate (breathing), and blood pressure. A fifth, oxygen saturation, is often monitored.
